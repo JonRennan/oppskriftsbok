@@ -17,12 +17,7 @@ export default function RootLayout({
   return (
     <html lang="nb-NO" suppressHydrationWarning>
       <body className={`${GeistSans.variable}`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ThemeProvider>
           <div className="absolute top-4 right-4">
             <ModeToggle />
           </div>
