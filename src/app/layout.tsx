@@ -1,6 +1,6 @@
 import "~/styles/globals.css";
 
-import { GeistSans } from "geist/font/sans";
+import { Roboto_Mono } from 'next/font/google'
 import { type Metadata } from "next";
 import { ModeToggle } from "~/components/mode-toggle";
 import { ThemeProvider } from "~/components/theme-provider";
@@ -11,12 +11,18 @@ export const metadata: Metadata = {
   // icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
+const roboto_mono = Roboto_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-roboto-mono',
+})
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="nb-NO" suppressHydrationWarning>
-      <body className={`${GeistSans.variable}`}>
+      <body className={`${roboto_mono.variable}`}>
         <ThemeProvider>
           <div className="absolute top-4 right-4">
             <ModeToggle />
