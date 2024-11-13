@@ -45,7 +45,7 @@ export default function HomePage() {
     },
     {
       id: "cornstarch",
-      label: "4-5ss maisenna",
+      label: "4-5ss maizena",
     },
     {
       id: "lemon",
