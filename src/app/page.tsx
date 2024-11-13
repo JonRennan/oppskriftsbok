@@ -1,3 +1,9 @@
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "~/components/ui/accordion"
 import { Checkbox } from "~/components/ui/checkbox";
 
 export default function HomePage() {
@@ -60,6 +66,27 @@ export default function HomePage() {
             </li>
           ))}
         </ul>
+        <Accordion type="single" collapsible>
+          <AccordionItem value="item-1">
+            <AccordionTrigger className="text-xl">Fremgangsmåte</AccordionTrigger>
+            <AccordionContent>
+              <ul className="flex flex-col gap-1">
+                <li>
+                  Ha alt i en bolle og kna det til en jevn deig.
+                </li>
+                <li>
+                  Smør paiformen med smør og press deigen jevnt ut i formen.
+                </li>
+                <li>
+                  La deigen stå kaldt i formen i minst 30 min.
+                </li>
+                <li>
+                  Stek bunnen i <b>10-15 min</b> på nederste rille (<b>180 grader</b>)
+                </li>
+              </ul>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </div>
 
       <div className="w-full px-4 py-2  md:max-w-lg bg-secondary rounded">
@@ -72,6 +99,14 @@ export default function HomePage() {
             </li>
           ))}
         </ul>
+        <Accordion type="single" collapsible>
+          <AccordionItem value="item-1">
+            <AccordionTrigger className="text-xl">Fremgangsmåte</AccordionTrigger>
+            <AccordionContent>
+              Stekes på nederste rille i ca. 20 min på 180 grader
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </div>
     </main>
   );
