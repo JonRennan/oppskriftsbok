@@ -2,8 +2,6 @@
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
-import githubLogoWhite from "public/github-mark/github-mark-white.svg";
-import githubLogo from "public/github-mark/github-mark.svg";
 import { useEffect, useState } from "react";
 
 export default function Footer() {
@@ -27,7 +25,7 @@ export default function Footer() {
           className="flex"
         >
           <Image
-            src={theme == "dark" ? githubLogoWhite : githubLogo}
+            src={theme == "dark" ? "/github-mark/github-mark-white.svg" : "/github-mark/github-mark.svg"}
             alt="Github logo"
             width={24}
             height={24}
