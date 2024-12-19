@@ -12,8 +12,13 @@ import {
   TooltipTrigger,
   TooltipProvider,
 } from "~/components/ui/tooltip";
+import { cn } from "~/lib/utils";
 
-export function ModeToggle() {
+interface ModeToggleProps {
+  className?: string;
+}
+
+export function ModeToggle({className}: ModeToggleProps) {
   const [mounted, setMounted] = useState(false)
   const { setTheme, theme } = useTheme();
 
@@ -30,7 +35,7 @@ export function ModeToggle() {
       <Tooltip delayDuration={100}>
         <TooltipTrigger asChild>
           <Button
-            className="h-8 w-8 rounded-full bg-background"
+            className={cn("h-8 w-8 rounded-full bg-background", className)}
             variant="outline"
             size="icon"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
