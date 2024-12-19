@@ -31,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="nb-NO" suppressHydrationWarning>
       <body
-        className={cn(`${roboto_mono.variable}`, "flex min-h-screen flex-col")}
+        className={cn(`${roboto_mono.variable}`, "flex min-h-full flex-col")}
       >
         <ThemeProvider>
           <Header />
