@@ -1,29 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "~/components/ui/accordion";
-import { Checkbox } from "~/components/ui/checkbox";
-import {
-  dough,
-  type Ingredient,
-  lemonCurd,
-  type PrepStep,
-  type RecipeSection,
-} from "~/types";
+import RecipeSection from "~/components/recipe/recipeSection";
+import { dough, lemonCurd, type RecipeSectionType } from "~/types";
 
 export default function HomePage() {
-  const [recipe, setRecipe] = useState<RecipeSection[]>([dough, lemonCurd]);
+  const [recipe, setRecipe] = useState<RecipeSectionType[]>([dough, lemonCurd]);
 
   useEffect(() => {
     if (window) {
       const localeValue = localStorage.getItem("recipe");
       if (localeValue != null) {
-        setRecipe(JSON.parse(localeValue) as RecipeSection[]);
+        setRecipe(JSON.parse(localeValue) as RecipeSectionType[]);
       }
     }
   }, []);
@@ -57,51 +45,12 @@ export default function HomePage() {
     <main className="flex flex-col items-center gap-4 p-1 pt-4">
       <h1 className="text-4xl font-bold">Sitronpai</h1>
 
-      {recipe.map((section: RecipeSection) => (
-        <div
-          key={section.name}
-          className="w-full rounded bg-secondary px-4 py-2 md:max-w-lg"
-        >
-          <h2 className="pb-2 text-2xl font-bold text-primary">
-            {section.name}
-          </h2>
-          <ul>
-            {section.ingredients.map((ingredient: Ingredient) => (
-              <li key={ingredient.id} className="flex items-center gap-2 py-1">
-                <Checkbox
-                  id={ingredient.id}
-                  checked={ingredient.checked}
-                  onCheckedChange={(checked) =>
-                    toggleIngredient(
-                      section.id,
-                      ingredient.id,
-                      checked as boolean,
-                    )
-                  }
-                  className="rounded"
-                />
-                <label>{ingredient.label}</label>
-              </li>
-            ))}
-          </ul>
-          <Accordion type="single" collapsible>
-            <AccordionItem value="item-1">
-              <AccordionTrigger className="text-xl">
-                Fremgangsmåte
-              </AccordionTrigger>
-              <AccordionContent>
-                <ul className="flex flex-col gap-1">
-                  {section.steps.map((step: PrepStep) => (
-                    <li
-                      key={step.id}
-                      dangerouslySetInnerHTML={{ __html: step.label }}
-                    />
-                  ))}
-                </ul>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </div>
+      {recipe.map((section: RecipeSectionType) => (
+        <RecipeSection
+          section={section}
+          onClickIngredient={toggleIngredient}
+          key={section.id}
+        />
       ))}
     </main>
   );
