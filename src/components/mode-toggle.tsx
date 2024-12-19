@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import * as React from "react";
 import { useTheme } from "next-themes";
 import { MoonIcon, SunIcon } from "lucide-react";
@@ -13,7 +14,16 @@ import {
 } from "~/components/ui/tooltip";
 
 export function ModeToggle() {
+  const [mounted, setMounted] = useState(false)
   const { setTheme, theme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return null
+  }
 
   return (
     <TooltipProvider disableHoverableContent>

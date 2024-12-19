@@ -1,9 +1,11 @@
 import "~/styles/globals.css";
-
-import { Roboto_Mono } from 'next/font/google'
 import { type Metadata } from "next";
-import { ModeToggle } from "~/components/mode-toggle";
+
+import { Roboto_Mono } from "next/font/google";
+import Footer from "~/components/footer";
+import Header from "~/components/header";
 import { ThemeProvider } from "~/components/theme-provider";
+import { cn } from "~/lib/utils";
 
 export const metadata: Metadata = {
   title: "Sitronpai",
@@ -18,22 +20,23 @@ export const metadata: Metadata = {
 };
 
 const roboto_mono = Roboto_Mono({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-roboto-mono',
-})
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-roboto-mono",
+});
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="nb-NO" suppressHydrationWarning>
-      <body className={`${roboto_mono.variable}`}>
+      <body
+        className={cn(`${roboto_mono.variable}`, "flex min-h-screen flex-col")}
+      >
         <ThemeProvider>
-          <div className="absolute top-4 right-4">
-            <ModeToggle />
-          </div>
-          {children}
+          <Header />
+          <div className="mb-auto">{children}</div>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
