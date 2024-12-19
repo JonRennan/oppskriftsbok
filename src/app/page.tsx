@@ -17,28 +17,40 @@ import {
 } from "~/types";
 
 export default function HomePage() {
-  const [recipe, setRecipe] = useState<RecipeSection[]>(() => {
-    const localeValue = localStorage.getItem("recipe")
-    if (localeValue == null) return [dough, lemonCurd]
-    return JSON.parse(localeValue) as RecipeSection[]
-  });
+  const [recipe, setRecipe] = useState<RecipeSection[]>([dough, lemonCurd]);
 
   useEffect(() => {
-    localStorage.setItem("recipe", JSON.stringify(recipe))
+    if (window) {
+      const localeValue = localStorage.getItem("recipe");
+      if (localeValue != null) {
+        setRecipe(JSON.parse(localeValue) as RecipeSection[]);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("recipe", JSON.stringify(recipe));
   }, [recipe]);
 
-  function toggleIngredient(sectionId: number, ingredientId: string, checked: boolean) {
-    setRecipe(currentRecipe => {
-      return currentRecipe.map(section => {
+  function toggleIngredient(
+    sectionId: number,
+    ingredientId: string,
+    checked: boolean,
+  ) {
+    setRecipe((currentRecipe) => {
+      return currentRecipe.map((section) => {
         if (section.id === sectionId) {
-          const ingredients = section.ingredients.map(ingredient => {
+          const ingredients = section.ingredients.map((ingredient) => {
             if (ingredient.id === ingredientId) {
-              return {...ingredient, checked}
-            } return ingredient
-          })
-          return {...section, ingredients }}
-        return section
-      })})
+              return { ...ingredient, checked };
+            }
+            return ingredient;
+          });
+          return { ...section, ingredients };
+        }
+        return section;
+      });
+    });
   }
 
   return (
@@ -59,7 +71,13 @@ export default function HomePage() {
                 <Checkbox
                   id={ingredient.id}
                   checked={ingredient.checked}
-                  onCheckedChange={checked => toggleIngredient(section.id, ingredient.id, checked as boolean)}
+                  onCheckedChange={(checked) =>
+                    toggleIngredient(
+                      section.id,
+                      ingredient.id,
+                      checked as boolean,
+                    )
+                  }
                   className="rounded"
                 />
                 <label>{ingredient.label}</label>
