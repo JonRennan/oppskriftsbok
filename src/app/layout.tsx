@@ -8,7 +8,13 @@ import { ThemeProvider } from "~/components/theme-provider";
 export const metadata: Metadata = {
   title: "Sitronpai",
   description: "Jon's sitronpai",
-  // icons: [{ rel: "icon", url: "/favicon.ico" }],
+  icons: [
+    { rel: "icon", url: "/favicon.ico" },
+    { rel: "icon", sizes: "16x16", url: "/favicon-16x16.png" },
+    { rel: "icon", sizes: "32x32", url: "/favicon-32x32.png" },
+    { rel: "apple-touch-icon", sizes: "180x180", url: "/apple-touch-icon.png" },
+    { rel: "manifest", url: "/site.webmanifest" },
+  ],
 };
 
 const roboto_mono = Roboto_Mono({
