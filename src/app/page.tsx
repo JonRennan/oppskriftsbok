@@ -57,10 +57,10 @@ export default function HomePage() {
       <h1 className="text-4xl font-bold">Sitronpai</h1>
 
       <div className="w-full px-4 py-2 md:max-w-lg bg-secondary rounded">
-        <h2 className="text-2xl text-primary font-bold">Bunn</h2>
+        <h2 className="text-2xl text-primary font-bold pb-2">Bunn</h2>
         <ul>
           {dough.map((item) => (
-            <li key={item.id} className="flex gap-2 items-center">
+            <li key={item.id} className="flex gap-2 items-center py-1">
               <Checkbox id={item.id} className="rounded"/>
               <label>{item.label}</label>
             </li>
@@ -90,10 +90,10 @@ export default function HomePage() {
       </div>
 
       <div className="w-full px-4 py-2  md:max-w-lg bg-secondary rounded">
-        <h2 className="text-2xl text-primary font-bold">Fyll</h2>
+        <h2 className="text-2xl text-primary font-bold pb-2">Fyll</h2>
         <ul>
           {lemonCurd.map((item) => (
-            <li key={item.id} className="flex gap-2 items-center">
+            <li key={item.id} className="flex gap-2 items-center py-1">
               <Checkbox id={item.id} className="rounded" />
               <label>{item.label}</label>
             </li>
