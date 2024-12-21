@@ -41,6 +41,22 @@ export default function HomePage() {
     });
   }
 
+  function resetSection(
+    sectionId: number,
+  ) {
+    setRecipe((currentRecipe) => {
+      return currentRecipe.map((section) => {
+        if (section.id === sectionId) {
+          const ingredients = section.ingredients.map((ingredient) => {
+              return { ...ingredient, checked: false };
+          });
+          return { ...section, ingredients };
+        }
+        return section;
+      });
+    });
+  }
+
   return (
     <main className="flex flex-col items-center gap-4 p-1 pt-4">
       <h1 className="text-4xl font-bold">Sitronpai</h1>
@@ -48,6 +64,7 @@ export default function HomePage() {
       {recipe.map((section: RecipeSectionType) => (
         <RecipeSection
           section={section}
+          resetSection={resetSection}
           onClickIngredient={toggleIngredient}
           key={section.id}
         />
